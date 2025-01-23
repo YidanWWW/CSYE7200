@@ -12,17 +12,17 @@ class Arithmetic(val start: Int) {
 
   // P31
   def isPrime: Boolean = (start > 1) &&
-          primes.takeWhile(_ <= Math.sqrt(start)).forall(start % _ != 0)
+    primes.takeWhile(_ <= Math.sqrt(start)).forall(start % _ != 0)
 
   // P33
   def isCoprimeTo(n: Int): Boolean =
-  // TO BE IMPLEMENTED 
-???
+    // TO BE IMPLEMENTED
+    ???
 
   // P34
   def totientP34: Int =
-  // TO BE IMPLEMENTED 
-???
+    // TO BE IMPLEMENTED
+    ???
 
   // P37
   def totient: Int = // SOLUTION
@@ -31,23 +31,23 @@ class Arithmetic(val start: Int) {
         case (p, m) => r * (p - 1) * Math.pow(p, m - 1).toInt
       }
     }
-???
+
 
   // P35 (amended by P36)
   def primeFactors: Seq[Int] =
-  // TO BE IMPLEMENTED 
-???
+    // TO BE IMPLEMENTED
+    ???
 
   // P36
   def primeFactorMultiplicity: Map[Int, Int] = {
-    // TO BE IMPLEMENTED 
-???
+    // TO BE IMPLEMENTED
+    ???
   }
 
   // P40
   def goldbach: (Int, Int) =
-  // TO BE IMPLEMENTED 
-???
+    // TO BE IMPLEMENTED
+    ???
 }
 
 object Arithmetic {
@@ -57,26 +57,26 @@ object Arithmetic {
   lazy val primes: LazyList[Int] = 2 #:: LazyList.from(3, 2).filter(_.isPrime)
 
   // P32
-  @scala.annotation.tailrec
+  //@scala.annotation.tailrec
   def gcd(m: Int, n: Int): Int =
-  // TO BE IMPLEMENTED 
-???
+    // TO BE IMPLEMENTED
+    ???
 
   // P39
   def listPrimesInRange(r: Range): Seq[Int] =
-  // TO BE IMPLEMENTED 
-???
+    // TO BE IMPLEMENTED
+    ???
 
   // P41
   def printGoldbachList(r: Range): Unit = {
-    // TO BE IMPLEMENTED 
-???
+    // TO BE IMPLEMENTED
+    ???
   }
 
   // P41
   def printGoldbachListLimited(r: Range, limit: Int): Unit = {
-    // TO BE IMPLEMENTED 
-???
+    // TO BE IMPLEMENTED
+    ???
   }
 
 }
