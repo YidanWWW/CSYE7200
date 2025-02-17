@@ -33,3 +33,4 @@ def getTime: String = {
 }
 logTime(false, getTime)
 println("all done")
+

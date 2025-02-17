@@ -102,7 +102,9 @@ object Movie extends App {
      */
     def parse(w: String): Try[Movie] = {
 // TO BE IMPLEMENTED 
-       Try(???)
+
+      Try(Movie(w.split(",")))
+
       // END
     }
   }
@@ -137,7 +139,7 @@ object Movie extends App {
     // 6 points
     val result: Seq[String] = {
       // TO BE IMPLEMENTED 
-       ???
+      indices.map(i => list(i))
       // END
     }
     result.toList
@@ -260,8 +262,12 @@ object Rating {
   // 13 points
   def apply(s: String): Rating = s match {
     case rRating("Unrated" | "Approved" | "Not Rated" | "" | "NULL" | null, _, _) => throw ParseException(s"parse error in Rating: $s")
-// TO BE IMPLEMENTED 
-// END
+// TO BE IMPLEMENTED
+    case rRating(code, null, null) =>
+      Rating(code, None)
+    case rRating(code, _, age) if age != null =>
+      Rating(code, Some(age.toInt))
+    // END
     case _ => throw ParseException(s"parse error in Rating: $s")
   }
 }
