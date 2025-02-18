@@ -101,10 +101,11 @@ object Movie extends App {
      * @return a Try[Movie]
      */
     def parse(w: String): Try[Movie] = {
-// TO BE IMPLEMENTED 
-
-      Try(Movie(w.split(",")))
-
+// TO BE IMPLEMENTED
+      Try {
+        val fields = w.split(",").map(_.trim).toSeq
+        Movie(fields)
+      }
       // END
     }
   }
