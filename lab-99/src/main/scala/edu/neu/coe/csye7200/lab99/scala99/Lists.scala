@@ -163,3 +163,22 @@ object P15 {
 ???
   }
 }
+
+object Aggregation {
+  def aggregate(xs: Seq[Double], f : (Double, Double) => Double, initial: Double = 0): Double = {
+    @scala.annotation.tailrec
+    def inner(r: Double, work: Seq[Double]) : Double = work match {
+      case Nil => r
+      case h :: t => inner(f(r, h), t) //r=initial=0 f(0, 1.5)=0
+    }
+
+    inner(initial, xs)
+  }
+}
+
+val numbers: Seq[Double] = Seq(1.5, 2.5, 3.5, 4.5, 5.5)
+
+def product(a: Double, b: Double): Double = a * b
+
+val totalProduct = Aggregation.aggregate(numbers, product, 1)
+println(s"Total product: $totalProduct")  // 应输出 Total product: 514.3125
