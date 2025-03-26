@@ -1,7 +1,7 @@
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
 
-object TitanicAnalysis {
+object TitanicAnalysis2 {
   def main(args: Array[String]): Unit = {
     // Create Spark Session
     val spark = SparkSession.builder()
