@@ -22,7 +22,17 @@ def wget(url: URL)(implicit ec: ExecutionContext): Future[Seq[URL]] = {
   // 16 points.
   def getURLs(ns: Node): Seq[Try[URL]] =
 // TO BE IMPLEMENTED 
- ???
+ {
+   // Extract all href attributes from <a> tags in the HTML
+   val links = ns \\ "a" flatMap (_.attribute("href").map(_.text))
+
+   // For each href, create and validate a URL
+   for {
+     link <- links
+     urlTry = createURL(Some(url), link) // Create URL from link, using current URL as context
+     validatedUrl = urlTry flatMap validateURL // Validate the URL protocol
+   } yield validatedUrl
+ }
 // END SOLUTION
 
   def getLinks(g: String): Try[Seq[URL]] = {
@@ -33,7 +43,11 @@ def wget(url: URL)(implicit ec: ExecutionContext): Future[Seq[URL]] = {
   // 9 points.
 
   // TO BE IMPLEMENTED 
-   ???
+  // Implement the wget function using a for-comprehension
+  for {
+    content <- getURLContent(url)  // Get the content of the URL
+    urls <- FP.asFuture(getLinks(content))  // Parse links from the content
+  } yield urls
   // END SOLUTION
 
   /**
@@ -55,7 +69,6 @@ def wget(url: URL)(implicit ec: ExecutionContext): Future[Seq[URL]] = {
       case NonFatal(e) => Failure(WebCrawlerURLException(errorMsg, e))
     }
 
-  z
 }
 
 object Helper {

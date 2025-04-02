@@ -141,7 +141,10 @@ object WebCrawler extends App {
     // You will also need FP.asFuture
     // 9 points.
     // TO BE IMPLEMENTED 
-     ???
+    for {
+      content <- getURLContent(url)
+      urls <- asFuture(getLinks(content, url))
+    } yield urls
     // END SOLUTION
 
   /**
@@ -173,7 +176,22 @@ object WebCrawler extends App {
    */
   def getURLs(node: Node, url: URL): Seq[Try[URL]] =
 // TO BE IMPLEMENTED 
- ???
+ {
+   // Extract all href attributes from <a> tags in the HTML
+   val links = node \\ "a" flatMap (_.attribute("href").map(_.text))
+
+   // Filter valid URL strings
+   val validLinks = links filter isValidURLString
+
+   // Convert each href string to a URL, using the current URL as context
+   validLinks map { href =>
+     // Create URL from the href, using current URL as context
+     val urlTry = createRelURL(Some(url), href)
+
+     // Validate that the URL uses HTTP or HTTPS protocol
+     urlTry flatMap validateURL
+   }
+ }
 // END SOLUTION
 
   /**
