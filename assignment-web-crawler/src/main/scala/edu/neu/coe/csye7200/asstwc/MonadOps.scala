@@ -250,7 +250,7 @@ object MonadOps {
   /**
    * Method to extract an Option[X] from an Either[Throwable, X].
    *
-   * Hint: this one is easy: just look for a method which turns an Either into a Option.
+   * Hint: this one is easy: just look for a method which turns an Either into an Option.
    * 7 points.
    *
    * @param xe an Either[Throwable, X].
